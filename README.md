@@ -16,6 +16,5 @@ add it to your Emacs load path.  An easy way to do that is with
 
 ## License
 
-Substratic Forge is licensed under the [GNU General Public License
-v3.0](https://www.gnu.org/licenses/gpl-3.0.html), see [LICENSE](LICENSE) for
-more details.
+Substratic Forge is licensed under the [Mozilla Public License
+2.0](https://www.mozilla.org/MPL/2.0/), see [LICENSE](LICENSE) for more details.
