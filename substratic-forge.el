@@ -99,16 +99,8 @@ in the optional ALIST parameter."
   "Initiates a connection to a Substratic Engine game."
   (interactive)
 
-  ;; Switch to the REPL buffer first before starting
-  (switch-to-buffer (get-buffer-create "* Gambit REPL *"))
-  (goto-char (point-max))
-
-  (run-at-time "1 sec" nil (lambda ()
-                             ;; Connect to RPC server
-                             (substratic-connect-rpc 44311)
-
-                             ;; Connect to REPL
-                             (geiser-connect 'gambit "localhost" 44555))))
+  ;; Connect to RPC server
+  (substratic-connect-rpc 44311))
 
 (provide 'substratic-forge)
 
