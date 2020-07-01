@@ -86,9 +86,21 @@ in the optional ALIST parameter."
   (let* ((request-id (incf substratic-rpc-next-request-id))
          (message `(request ,type
                             ,(cons `(request-id . ,request-id) (or alist '())))))
-    (setq substratic-rpc-pending-requests (cons `(,request-id . ,callback))
-                                          substratic-rpc-pending-requests)
+    (setq substratic-rpc-pending-requests (cons `(,request-id . ,callback)
+                                                substratic-rpc-pending-requests))
     (substratic-rpc-send message)))
+
+;;;###autoload
+(defun substratic-reload-module (&optional buffer)
+  "Reloads the module referenced by BUFFER or the current buffer."
+  (interactive)
+  (let ((file-name (buffer-file-name buffer)))
+    ;; TODO: Check if it's a .scm or .sld file
+    (if file-name
+        (substratic-rpc-request 'forge/reload-module
+                                (lambda (response) (message "Reloaded module!"))
+                                `((module-path . ,file-name)))
+        (message "This buffer does not have an associated file."))))
 
 ;; DESIGN:
 ;; - Figure out how to use transient and magit-section for UI
